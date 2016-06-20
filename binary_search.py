@@ -15,30 +15,21 @@ def binary_search(val):
     >>> max([binary_search(i) for i in range(1, 101)])
     7
     """
-
-    assert 0 < val < 101, "Val must be between 1-100"
-    min_val = 1
-    max_val = 100
+    min_val = 0
+    max_val = 101
+    assert min_val < val < max_val, "Val must be between 1-100"
     num_guesses = 0
     # assign the current val to the input so we don't have to change initial input val
-    cur_val = val
+    guess = None
 
-    if cur_val > (max_val/2):
-        min_val = max_val/2
-        cur_val = (max_val - min_val)/2
+    while guess != val:
         num_guesses += 1
+        guess = (max_val - min_val) / 2 + min_val
 
-    elif cur_val < (max_val/2):
-        max_val = max_val/2
-        cur_val = (max_val - min_val)/2
-        num_guesses += 1
+        if val > guess:
+            min_val = guess
 
-    elif cur_val == max_val/2:
-        num_guesses += 1
-
-    else:
-        num_guesses += 1
+        elif val < guess:
+            max_val = guess
 
     return num_guesses
-
-print binary_search(50)
