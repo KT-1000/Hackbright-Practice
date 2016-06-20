@@ -19,17 +19,19 @@ def binary_search(val):
     max_val = 101
     assert min_val < val < max_val, "Val must be between 1-100"
     num_guesses = 0
-    # assign the current val to the input so we don't have to change initial input val
+    # just to start, we haven't guessed yet
     guess = None
 
     while guess != val:
+        # increment every time a guess is made
         num_guesses += 1
+        # set guess to the midpoint with fancy math!
         guess = (max_val - min_val) / 2 + min_val
-
+        # progressively limit search to a smaller range in this if/elif
         if val > guess:
             min_val = guess
 
         elif val < guess:
             max_val = guess
-
+    # when the guess is equal to the val, return the number of guesses it took to get here
     return num_guesses
